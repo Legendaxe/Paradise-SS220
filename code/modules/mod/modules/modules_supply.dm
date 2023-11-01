@@ -325,8 +325,7 @@
 	if(!keep_turfs)
 		keep_turfs = typecacheof(list(
 			/turf/simulated/floor/plating/lava,
-			/turf/simulated/floor/indestructible/hierophant,
-			/turf/simulated/floor/indestructible/necropolis
+			/turf/simulated/floor/indestructible/hierophant
 			))
 
 /obj/item/mod/module/ash_accretion/on_suit_activation()

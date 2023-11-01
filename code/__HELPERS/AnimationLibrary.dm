@@ -8,12 +8,7 @@
 	if(!istype(A) && !isclient(A))
 		return
 	A.color = null
-	animate(A, color = MATRIX_GREYSCALE, time = time, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
-
-/proc/animate_fade_colored(atom/A, time = 5)
-	if(!istype(A) && !isclient(A))
-		return
-	animate(A, color = null, time = time, easing = SINE_EASING, flags = ANIMATION_PARALLEL)
+	animate(A, color = MATRIX_GREYSCALE, time = time, easing = SINE_EASING)
 
 /proc/animate_melt_pixel(atom/A)
 	if(!istype(A))

@@ -510,7 +510,9 @@
 		playsound(loc, 'sound/machines/click.ogg', 50, 1)
 		return FALSE
 
-	if(istype(A, /obj/structure/window))
+	if(istype(A, /obj/structure/window)) // You mean the grille of course, do you?
+		A = locate(/obj/structure/grille) in A.loc
+	if(istype(A, /obj/structure/grille))
 		if(!checkResource(2, user))
 			playsound(loc, 'sound/machines/click.ogg', 50, 1)
 			return FALSE
@@ -525,8 +527,8 @@
 		playsound(loc, usesound, 50, 1)
 		var/turf/T1 = get_turf(A)
 		QDEL_NULL(A)
-		for(var/obj/structure/grille/G in T1.contents)
-			qdel(G)
+		for(var/obj/structure/window/W in T1.contents)
+			qdel(W)
 		return TRUE
 	return FALSE
 

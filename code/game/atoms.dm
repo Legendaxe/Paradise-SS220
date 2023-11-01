@@ -37,6 +37,9 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+	//Detective Work, used for allowing a given atom to leave its fibers on stuff. Allowed by default
+	var/can_leave_fibers = TRUE
+
 	var/admin_spawned = FALSE	//was this spawned by an admin? used for stat tracking stuff.
 
 	var/initialized = FALSE
@@ -651,7 +654,7 @@
 				//Add the list if it does not exist.
 				if(!fingerprintshidden)
 					fingerprintshidden = list()
-				fingerprintshidden += "\[[all_timestamps()]\] (Wearing gloves). Real name: [H.real_name], Key: [H.key]"
+				fingerprintshidden += text("\[[all_timestamps()]\] (Wearing gloves). Real name: [], Key: []", H.real_name, H.key)
 				fingerprintslast = H.ckey
 			return FALSE
 		if(!fingerprints)
@@ -659,7 +662,7 @@
 				//Add the list if it does not exist.
 				if(!fingerprintshidden)
 					fingerprintshidden = list()
-				fingerprintshidden += "\[[all_timestamps()]\] Real name: [H.real_name], Key: [H.key]"
+				fingerprintshidden += text("\[[all_timestamps()]\] Real name: [], Key: []", H.real_name, H.key)
 				fingerprintslast = H.ckey
 			return TRUE
 	else
@@ -667,7 +670,7 @@
 			//Add the list if it does not exist.
 			if(!fingerprintshidden)
 				fingerprintshidden = list()
-			fingerprintshidden += "\[[all_timestamps()]\] Real name: [M.real_name], Key: [M.key]"
+			fingerprintshidden += text("\[[all_timestamps()]\] Real name: [], Key: []", M.real_name, M.key)
 			fingerprintslast = M.ckey
 	return
 
@@ -710,14 +713,14 @@
 		if(!ignoregloves)
 			if(H.gloves && H.gloves != src)
 				if(fingerprintslast != H.ckey)
-					fingerprintshidden += "\[[all_timestamps()]\] (Wearing gloves). Real name: [H.real_name], Key: [H.key]"
+					fingerprintshidden += text("\[[all_timestamps()]\] (Wearing gloves). Real name: [], Key: []", H.real_name, H.key)
 					fingerprintslast = H.ckey
 				H.gloves.add_fingerprint(M)
 				return FALSE
 
 		//More adminstuffz
 		if(fingerprintslast != H.ckey)
-			fingerprintshidden += "\[[all_timestamps()]\] Real name: [H.real_name], Key: [H.key]"
+			fingerprintshidden += text("\[[all_timestamps()]\] Real name: [], Key: []", H.real_name, H.key)
 			fingerprintslast = H.ckey
 
 		//Make the list if it does not exist.
@@ -734,7 +737,7 @@
 	else
 		//Smudge up dem prints some
 		if(fingerprintslast != M.ckey)
-			fingerprintshidden += "\[[all_timestamps()]\] Real name: [M.real_name], Key: [M.key]"
+			fingerprintshidden += text("\[[all_timestamps()]\] Real name: [], Key: []", M.real_name, M.key)
 			fingerprintslast = M.ckey
 
 	return

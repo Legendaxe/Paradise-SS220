@@ -81,8 +81,7 @@
 		playsound(src, "sound/items/megaphone.ogg", 100, FALSE, 5)
 
 	audible_message("<span class='game say'><span class='name'>[user.GetVoice()]</span> [user.GetAltName()] broadcasts, <span class='[span]'>\"[message]\"</span></span>", hearing_distance = 14)
-	log_say("(MEGAPHONE) [message]", user)
-	user.create_log(SAY_LOG, "(megaphone) '[message]'")
+	log_say(message, user)
 	for(var/obj/O in view(14, get_turf(src)))
 		O.hear_talk(user, message_to_multilingual("<span class='[span]'>[message]</span>"))
 

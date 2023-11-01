@@ -165,9 +165,7 @@
 /turf/simulated/floor/plasteel,
 /area/ruin/space/powered/bar)
 "aP" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
+/obj/effect/decal/warning_stripes/north,
 /obj/structure/marker_beacon/dock_marker,
 /turf/simulated/floor/plating/airless,
 /area/ruin/space/powered)
@@ -323,9 +321,7 @@
 /turf/simulated/floor/plating,
 /area/ruin/space/powered/bar)
 "bo" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
+/obj/effect/decal/warning_stripes/north,
 /turf/simulated/floor/plating/airless,
 /area/ruin/space/powered)
 "bq" = (
@@ -336,9 +332,7 @@
 /turf/template_noop,
 /area/space/nearstation)
 "bt" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/south,
 /turf/simulated/floor/plating,
 /area/ruin/space/powered)
 "bF" = (
@@ -666,12 +660,8 @@
 	id_tag = "pod cycle";
 	name = "airlock dock"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
+/obj/effect/decal/warning_stripes/south,
+/obj/effect/decal/warning_stripes/north,
 /turf/simulated/floor/plating/airless,
 /area/ruin/space/powered)
 "DT" = (
@@ -899,9 +889,7 @@
 /turf/simulated/floor/plating,
 /area/ruin/space/powered/bar)
 "RX" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/south,
 /obj/structure/marker_beacon/dock_marker,
 /turf/simulated/floor/plating,
 /area/ruin/space/powered)
@@ -967,12 +955,8 @@
 	id_tag = "pod cycle";
 	name = "airlock dock"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/north,
+/obj/effect/decal/warning_stripes/south,
 /turf/simulated/floor/plating/airless,
 /area/ruin/space/powered)
 "ZM" = (

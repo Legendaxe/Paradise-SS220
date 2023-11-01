@@ -7,7 +7,7 @@
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
-	icon_state = "extinguisher"
+	icon_state = "extinguisher_closed"
 	anchored = TRUE
 	density = FALSE
 	max_integrity = 200
@@ -30,7 +30,6 @@
 			has_extinguisher = new /obj/item/extinguisher/mini(src)
 		else
 			has_extinguisher = new /obj/item/extinguisher(src)
-	update_icon(UPDATE_ICON_STATE)
 
 /obj/structure/extinguisher_cabinet/examine(mob/user)
 	. = ..()
@@ -156,16 +155,16 @@
 	qdel(src)
 
 /obj/structure/extinguisher_cabinet/update_icon_state()
-	icon_state = "extinguisher" // Needs to reset the state with every update
-
+	if(!opened)
+		icon_state = "extinguisher_closed"
+		return
 	if(has_extinguisher)
 		if(istype(has_extinguisher, /obj/item/extinguisher/mini))
-			icon_state += "_mini"
+			icon_state = "extinguisher_mini"
 		else
-			icon_state += "_full"
-
-	if(!opened)
-		icon_state += "_closed"
+			icon_state = "extinguisher_full"
+	else
+		icon_state = "extinguisher_empty"
 
 /obj/structure/extinguisher_cabinet/empty
 	extinguishertype = NO_EXTINGUISHER

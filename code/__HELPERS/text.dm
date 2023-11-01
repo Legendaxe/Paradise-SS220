@@ -681,34 +681,34 @@
 	switch(macro)
 		//prefixes/agnostic
 		if("the")
-			rest = "\the [rest]"
+			rest = text("\the []", rest)
 		if("a")
-			rest = "\a [rest]"
+			rest = text("\a []", rest)
 		if("an")
-			rest = "\an [rest]"
+			rest = text("\an []", rest)
 		if("proper")
-			rest = "\proper [rest]"
+			rest = text("\proper []", rest)
 		if("improper")
-			rest = "\improper [rest]"
+			rest = text("\improper []", rest)
 		if("roman")
-			rest = "\roman [rest]"
+			rest = text("\roman []", rest)
 		//postfixes
 		if("th")
-			base = "[rest]\th"
+			base = text("[]\th", rest)
 		if("s")
-			base = "[rest]\s"
+			base = text("[]\s", rest)
 		if("he")
-			base = "[rest]\he"
+			base = text("[]\he", rest)
 		if("she")
-			base = "[rest]\she"
+			base = text("[]\she", rest)
 		if("his")
-			base = "[rest]\his"
+			base = text("[]\his", rest)
 		if("himself")
-			base = "[rest]\himself"
+			base = text("[]\himself", rest)
 		if("herself")
-			base = "[rest]\herself"
+			base = text("[]\herself", rest)
 		if("hers")
-			base = "[rest]\hers"
+			base = text("[]\hers", rest)
 
 	. = base
 	if(rest)

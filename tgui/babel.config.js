@@ -19,7 +19,6 @@ const createBabelConfig = (options) => {
           targets: [],
         },
       ],
-      require.resolve('@babel/preset-react'),
       ...presets,
     ].filter(Boolean),
     plugins: [
@@ -32,6 +31,7 @@ const createBabelConfig = (options) => {
       require.resolve('@babel/plugin-transform-jscript'),
       require.resolve('babel-plugin-inferno'),
       removeConsole && require.resolve('babel-plugin-transform-remove-console'),
+      require.resolve('common/string.babel-plugin.cjs'),
       ...plugins,
     ].filter(Boolean),
   };

@@ -4,7 +4,6 @@
 #ifdef UNIT_TESTS
 #include "aicard_icons.dm"
 #include "announcements.dm"
-#include "areas_apcs.dm"
 #include "component_tests.dm"
 #include "config_sanity.dm"
 #include "crafting_lists.dm"

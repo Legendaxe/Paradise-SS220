@@ -110,7 +110,7 @@ AI MODULES
 	..()
 	var/targName = stripped_input(usr, "Please enter the name of the person to safeguard.", "Safeguard who?", user.name)
 	targetName = targName
-	desc = "A 'safeguard' AI module: 'Safeguard [targetName]. Individuals that threaten [targetName] are not crew and must be eliminated.'"
+	desc = text("A 'safeguard' AI module: 'Safeguard []. Individuals that threaten [] are not crew and must be eliminated.'", targetName, targetName)
 
 /obj/item/aiModule/safeguard/install(obj/machinery/computer/C)
 	if(!targetName)
@@ -120,7 +120,7 @@ AI MODULES
 
 /obj/item/aiModule/safeguard/addAdditionalLaws(mob/living/silicon/ai/target, mob/sender)
 	..()
-	var/law = "Safeguard [targetName]. Individuals that threaten [targetName] are not crew and must be eliminated.'"
+	var/law = text("Safeguard []. Individuals that threaten [] are not crew and must be eliminated.'", targetName, targetName)
 	to_chat(target, law)
 	target.add_supplied_law(4, law)
 	GLOB.lawchanges.Add("The law specified [targetName]")
@@ -137,7 +137,7 @@ AI MODULES
 	..()
 	var/targName = stripped_input(usr, "Please enter the name of the person who is the only crew.", "Who?", user.real_name)
 	targetName = targName
-	desc = "A 'one crew' AI module: 'Only [targetName] is crew.'"
+	desc = text("A 'one crew' AI module: 'Only [] is crew.'", targetName)
 
 /obj/item/aiModule/oneCrewMember/install(obj/machinery/computer/C)
 	if(!targetName)

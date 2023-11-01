@@ -129,7 +129,6 @@
 	icon = 'icons/obj/stacks/miscellaneous.dmi'
 	icon_state = "gauze"
 	origin_tech = "biotech=2"
-	merge_type = /obj/item/stack/medical/bruise_pack
 	max_amount = 12
 	heal_brute = 10
 	stop_bleeding = 1800
@@ -174,7 +173,6 @@
 	name = "improvised gauze"
 	singular_name = "improvised gauze"
 	desc = "A roll of cloth roughly cut from something that can stop bleeding, but does not heal wounds."
-	merge_type = /obj/item/stack/medical/bruise_pack/improvised
 	heal_brute = 0
 	stop_bleeding = 900
 
@@ -185,7 +183,6 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	belt_icon = "traumakit"
-	merge_type = /obj/item/stack/medical/bruise_pack/advanced
 	max_amount = 6
 	heal_brute = 25
 	stop_bleeding = 0

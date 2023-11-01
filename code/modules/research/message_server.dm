@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(message_servers)
 				continue
 			if(RC.newmessagepriority < priority)
 				RC.newmessagepriority = priority
-				RC.update_icon(UPDATE_OVERLAYS)
+				RC.icon_state = "req_comp[priority]"
 			switch(priority)
 				if(2)
 					if(!RC.silent)

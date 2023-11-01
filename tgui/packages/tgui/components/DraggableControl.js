@@ -18,7 +18,8 @@ export class DraggableControl extends Component {
       value: props.value,
       dragging: false,
       editing: false,
-      oldOffset: null,
+      internalValue: null,
+      origin: null,
       suppressingFlicker: false,
     };
 
@@ -48,10 +49,12 @@ export class DraggableControl extends Component {
         return;
       }
       document.body.style['pointer-events'] = 'none';
-      this.ref = e.currentTarget;
+      this.ref = e.target;
       this.setState({
         dragging: false,
+        origin: getScalarScreenOffset(e, dragMatrix),
         value,
+        internalValue: value,
       });
       this.timer = setTimeout(() => {
         this.setState({
@@ -70,50 +73,30 @@ export class DraggableControl extends Component {
     };
 
     this.handleDragMove = (e) => {
-      const { minValue, maxValue, step, dragMatrix, disabled } =
+      const { minValue, maxValue, step, stepPixelSize, dragMatrix, disabled } =
         this.props;
       if (disabled) {
         return;
       }
-      const defaultStepPixelSize = this.ref.offsetWidth / ((maxValue - minValue) / step);
-      let stepPixelSize = this.props.stepPixelSize ?? defaultStepPixelSize;
-      if (typeof stepPixelSize === 'function') {
-        stepPixelSize = stepPixelSize(defaultStepPixelSize);
-      }
       this.setState((prevState) => {
         const state = { ...prevState };
-        const oldOffset = prevState.oldOffset;
-        const offset = getScalarScreenOffset(e, dragMatrix) - this.ref.getBoundingClientRect().left - window.screenX;
+        const offset = getScalarScreenOffset(e, dragMatrix) - state.origin;
         if (prevState.dragging) {
-          if (oldOffset !== undefined && oldOffset !== null && offset !== oldOffset) {
-            const maxStep = maxValue / step;
-            const toNearestStep = offset > oldOffset
-              ? Math.floor  // Increasing
-              : Math.ceil   // Decreasing
-              ;
-            /* ● = step, o = oldOffset, n = offset
-             * There are four cases to consider for the following code:
-             * Case 1: Increasing(offset > oldOffset), moving between steps
-             * ●--o--n-●
-             * value should not change. Since both offsets are subject to floor,
-             * they have the same nearest steps and the difference cancels out,
-             * leaving value the same
-             * Case 2: Decreasing(offset < oldOffset), moving between steps
-             * ●--n--o-●
-             * Same as Case 1 except the function is ceil not floor
-             * Case 3: Increasing, offset is past step
-             * ●-o-●-n-● ; ●-o-●---●-n
-             * value should increase by 1, or however many steps o is behind n
-             * Case 4: Decreasing, offset is behind step
-             * ●-n-●-o-● ; ●-n-●---●-o
-             * Same as Case 3, but decrease instead of increase
-            */
-            const oldStep = clamp(toNearestStep(oldOffset / stepPixelSize), 0, maxStep);
-            const newStep = clamp(toNearestStep(offset / stepPixelSize), 0, maxStep);
-            const stepDifference = newStep - oldStep;
-            state.value = clamp(state.value + stepDifference * step, minValue, maxValue);
-          }
-          state.oldOffset = offset;
+          const stepOffset = Number.isFinite(minValue) ? minValue % step : 0;
+          // Translate mouse movement to value
+          // Give it some headroom (by increasing clamp range by 1 step)
+          state.internalValue = clamp(
+            state.internalValue + (offset * step) / stepPixelSize,
+            minValue - step,
+            maxValue + step
+          );
+          // Clamp the final value
+          state.value = clamp(
+            state.internalValue - (state.internalValue % step) + stepOffset,
+            minValue,
+            maxValue
+          );
+          state.origin = getScalarScreenOffset(e, dragMatrix);
         } else if (Math.abs(offset) > 4) {
           state.dragging = true;
         }
@@ -123,14 +106,14 @@ export class DraggableControl extends Component {
 
     this.handleDragEnd = (e) => {
       const { onChange, onDrag } = this.props;
-      const { dragging, value } = this.state;
+      const { dragging, value, internalValue } = this.state;
       document.body.style['pointer-events'] = 'auto';
       clearTimeout(this.timer);
       clearInterval(this.dragInterval);
       this.setState({
         dragging: false,
         editing: !dragging,
-        oldOffset: null
+        origin: null,
       });
       document.removeEventListener('mousemove', this.handleDragMove);
       document.removeEventListener('mouseup', this.handleDragEnd);
@@ -144,7 +127,7 @@ export class DraggableControl extends Component {
         }
       } else if (this.inputRef) {
         const input = this.inputRef.current;
-        input.value = value;
+        input.value = internalValue;
         // IE8: Dies when trying to focus a hidden element
         // (Error: Object does not support this action)
         try {
@@ -266,6 +249,7 @@ DraggableControl.defaultProps = {
   minValue: -Infinity,
   maxValue: +Infinity,
   step: 1,
+  stepPixelSize: 1,
   suppressFlicker: 50,
   dragMatrix: [1, 0],
 };

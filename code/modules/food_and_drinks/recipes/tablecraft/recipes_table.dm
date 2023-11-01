@@ -45,7 +45,7 @@
 		/datum/reagent/slimejelly = 5,
 		/obj/item/reagent_containers/food/snacks/bun = 1,
 	)
-	result = list(/obj/item/reagent_containers/food/snacks/burger/jelly/slime)
+	result = list(/obj/item/reagent_containers/food/snacks/jellyburger/slime)
 	category = CAT_FOOD
 	subcategory = CAT_SANDWICH
 
@@ -55,7 +55,7 @@
 		/datum/reagent/consumable/cherryjelly = 5,
 		/obj/item/reagent_containers/food/snacks/bun = 1,
 	)
-	result = list(/obj/item/reagent_containers/food/snacks/burger/jelly/cherry)
+	result = list(/obj/item/reagent_containers/food/snacks/jellyburger/cherry)
 	category = CAT_FOOD
 	subcategory = CAT_SANDWICH
 
@@ -65,7 +65,7 @@
 		/obj/item/melee/baseball_bat = 1,
 		/obj/item/reagent_containers/food/snacks/bun = 1,
 	)
-	result = list(/obj/item/reagent_containers/food/snacks/burger/baseball)
+	result = list(/obj/item/reagent_containers/food/snacks/baseballburger)
 	category = CAT_FOOD
 	subcategory = CAT_SANDWICH
 

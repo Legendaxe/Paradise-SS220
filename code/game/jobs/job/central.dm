@@ -28,6 +28,7 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	id = /obj/item/card/id/centcom
 	pda = /obj/item/pda/centcom
+	belt = /obj/item/gun/energy/pulse/pistol
 	implants = list(
 		/obj/item/implant/mindshield,
 		/obj/item/implant/dust
@@ -38,8 +39,7 @@
 	)
 	box = /obj/item/storage/box/centcomofficer
 	cybernetic_implants = list(
-		/obj/item/organ/internal/cyberimp/chest/nutriment/plus/hardened,
-		/obj/item/organ/internal/cyberimp/arm/combat/centcom
+		/obj/item/organ/internal/cyberimp/chest/nutriment/plus/hardened
 	)
 
 /datum/outfit/job/ntnavyofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -75,7 +75,7 @@
 	belt = /obj/item/storage/belt/military/assault
 	gloves = /obj/item/clothing/gloves/combat
 	shoes = /obj/item/clothing/shoes/combat
-	mask = /obj/item/clothing/mask/holo_cigar
+	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
 	head = /obj/item/clothing/head/helmet/space/deathsquad/beret
 	l_ear = /obj/item/radio/headset/centcom
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses

@@ -120,10 +120,6 @@
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/plating/airless,
 /area/ruin/space/abandtele)
-"M" = (
-/obj/machinery/atmospherics/binary/volume_pump,
-/turf/simulated/floor/plating/airless,
-/area/ruin/space/abandtele)
 
 (1,1,1) = {"
 a
@@ -216,7 +212,7 @@ g
 k
 p
 t
-w
+h
 b
 b
 c
@@ -284,8 +280,8 @@ c
 b
 b
 n
-M
 r
+w
 b
 b
 c

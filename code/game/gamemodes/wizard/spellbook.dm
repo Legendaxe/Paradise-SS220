@@ -561,7 +561,6 @@
 	category = "Summons"
 	limit = 3
 	cost = 1
-	is_ragin_restricted = TRUE
 
 /datum/spellbook_entry/item/hugbottle
 	name = "Bottle of Tickles"
@@ -583,7 +582,6 @@
 	item_path = /obj/item/antag_spawner/slaughter_demon
 	category = "Summons"
 	limit = 3
-	is_ragin_restricted = TRUE
 
 /datum/spellbook_entry/item/shadowbottle
 	name = "Bottle of Shadows"
